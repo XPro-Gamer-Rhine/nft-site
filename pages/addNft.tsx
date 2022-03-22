@@ -4,9 +4,7 @@ import Navbar from '../components/layout/navbar';
 import MobileMenu from '../components/layout/parts/mobileMenu';
 import MouseAndArrowUp from '../components/layout/parts/mouseAndArrowUp';
 
-
-export default function Lol() {
-  
+export default function AddNft() {
   return (
     <>
       <Navbar />

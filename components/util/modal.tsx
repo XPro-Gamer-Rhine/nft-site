@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useConnect } from 'wagmi';
+
 const Modal = () => {
   const [{ data, error }, connect] = useConnect();
   return (

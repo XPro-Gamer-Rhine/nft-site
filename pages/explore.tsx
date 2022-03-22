@@ -6,7 +6,7 @@ import Footer from '../components/layout/parts/footer';
 import MobileMenu from '../components/layout/parts/mobileMenu';
 import MouseAndArrowUp from '../components/layout/parts/mouseAndArrowUp';
 
-const Home: NextPage = () => {
+const Explore: NextPage = () => {
   return (
     <>
       <Navbar />
@@ -18,4 +18,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Explore;
