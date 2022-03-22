@@ -1,3 +1,4 @@
+import { ethers } from 'ethers';
 import useGetContract from './useGetContract';
 
 type UseUploadData = [
@@ -56,7 +57,7 @@ const useUploadData = (): UseUploadData => {
         await marketSigner.addMarketItem(
           response.toNumber() - 1,
           nftSigner.address,
-          100
+          ethers.utils.parseEther('120')
         );
       })
       .catch((err: any) => {

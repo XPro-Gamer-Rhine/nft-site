@@ -1,5 +1,6 @@
 import Davatar from '@davatar/react';
 import React from 'react';
+import useSellNft from '../../hooks/useSellNft';
 
 interface IProps {
   AGILITY: string;
@@ -14,6 +15,7 @@ interface IProps {
   NAME: string;
   DESCRIPTION: string;
   PRICE: string;
+  TOKEN_ID: number;
 }
 const NftDetails: React.FC<IProps> = ({
   AGILITY,
@@ -27,11 +29,16 @@ const NftDetails: React.FC<IProps> = ({
   NAME,
   DESCRIPTION,
   PRICE,
+  TOKEN_ID,
 }) => {
+  const [handleSell] = useSellNft();
   const splitAddress =
     CREATOR?.substr(0, 6) +
     `....` +
     CREATOR?.substr(CREATOR.length - 5, CREATOR.length - 1);
+  const handleSellNft = () => {
+    handleSell(TOKEN_ID, PRICE);
+  };
   return (
     <div className="product-details-area rn-section-gapTop">
       <div className="container">
@@ -160,10 +167,9 @@ const NftDetails: React.FC<IProps> = ({
                   <button
                     type="button"
                     className="btn btn-primary-alta mt--30"
-                    data-bs-toggle="modal"
-                    data-bs-target="#placebidModal"
+                    onClick={handleSellNft}
                   >
-                    Place a Bid
+                    SELL NFT
                   </button>
                 </div>
               </div>

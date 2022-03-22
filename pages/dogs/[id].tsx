@@ -14,7 +14,7 @@ const DogContent = () => {
     var _id: number = Number(url.substring(url.lastIndexOf('/') + 1));
     FetchData(_id);
   }, []);
-  console.log(nftData);
+
   return (
     <>
       <Navbar />
@@ -33,6 +33,7 @@ const DogContent = () => {
         NAME={nftData.NAME}
         DESCRIPTION={nftData.DESCRIPTION}
         PRICE={nftData.PRICE}
+        TOKEN_ID={nftData.TOKENID}
       />
       <MouseAndArrowUp />
       <Footer />

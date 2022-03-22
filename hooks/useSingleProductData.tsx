@@ -33,27 +33,48 @@ const useSingleProductData = (): UseSingleProductData => {
       DOG_NFT_ABI.abi,
       _provider
     );
-
+    let _price: string;
     try {
       let response = await contract.NFTList(_id);
       const nftInfo = await fetch(response.TOKENURI);
       const json = await nftInfo.json();
-      let temp = {
-        TOKENID: _id,
-        AGILITY: response.AGILITY,
-        BREED_COUNT: response.BREED_COUNT,
-        HEALTH: response.HEALTH,
-        LUCK: response.LUCK,
-        STAMINA: response.STAMINA,
-        TIER: response.TIER,
-        IMAGE_URL: json.image,
-        WEIGHT: response.WEIGHT,
-        CREATOR: response.creator,
-        NAME: json.name,
-        DESCRIPTION: json.description,
-        PRICE: json.price,
-      };
-      setNftData(temp);
+      if (marketSigner) {
+        const _response = await marketProvider.marketItemsList(6);
+        _price = ethers.utils.formatEther(_response.price);
+        let temp = {
+          TOKENID: _id,
+          AGILITY: response.AGILITY,
+          BREED_COUNT: response.BREED_COUNT,
+          HEALTH: response.HEALTH,
+          LUCK: response.LUCK,
+          STAMINA: response.STAMINA,
+          TIER: response.TIER,
+          IMAGE_URL: json.image,
+          WEIGHT: response.WEIGHT,
+          CREATOR: response.creator,
+          NAME: json.name,
+          DESCRIPTION: json.description,
+          PRICE: _price, //json.price,
+        };
+        setNftData(temp);
+      } else {
+        let temp = {
+          TOKENID: _id,
+          AGILITY: response.AGILITY,
+          BREED_COUNT: response.BREED_COUNT,
+          HEALTH: response.HEALTH,
+          LUCK: response.LUCK,
+          STAMINA: response.STAMINA,
+          TIER: response.TIER,
+          IMAGE_URL: json.image,
+          WEIGHT: response.WEIGHT,
+          CREATOR: response.creator,
+          NAME: json.name,
+          DESCRIPTION: json.description,
+          PRICE: json.price,
+        };
+        setNftData(temp);
+      }
     } catch (e: any) {
       console.log('🐞 Error');
     }
